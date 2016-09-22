@@ -10,9 +10,14 @@ buildscript {
 	}
 }
 
+plugins {
+	id 'net.researchgate.release' version '2.4.0'
+}
+
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+
 
 jar {
 	baseName = 'miw-demo'
