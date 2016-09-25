@@ -12,5 +12,6 @@ node {
     sh "./gradlew test"
 
     stage 'packaging'
-    sh "./gradlew bootRepackage"
+    sh "./gradlew release"
+    archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
 }

@@ -59,3 +59,7 @@ test {
 		events "passed", "skipped", "failed"
 	}
 }
+release {
+	buildTasks = ['bootRepackage']
+}
+
