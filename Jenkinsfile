@@ -15,9 +15,9 @@ node {
     archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
 }
 
-input 'Create Release?'
-
+//Only allow one running at a time
 stage 'Create Release', concurrency: 1
+input 'Create Release?'
 node {
     sh "./gradlew clean release -Prelease.useAutomaticVersion=true"
     archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
