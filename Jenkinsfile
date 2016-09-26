@@ -12,7 +12,7 @@ node {
     sh "./gradlew test"
 
     stage 'packaging'
-    //sh "./gradlew release -Prelease.useAutomaticVersion=true"
-    sh "./gradlew bootRepackage"
+    sh "./gradlew release -Prelease.useAutomaticVersion=true"
+    //sh "./gradlew bootRepackage"
     archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
 }
