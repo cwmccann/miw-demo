@@ -17,8 +17,8 @@ node {
 
 input 'Create Release?'
 
+stage 'Create Release', concurrency: 1
 node {
-    stage 'Create Release'
     sh "./gradlew clean release -Prelease.useAutomaticVersion=true"
     archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
 }
