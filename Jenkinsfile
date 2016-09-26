@@ -1,18 +1,22 @@
+#!/usr/bin/env groovy
+
 node {
-    stage 'check tools'
+    stage 'Checkout and Build'
+
     sh "java -version"
-    
-    stage 'checkout source code'
     checkout scm
 
-    stage 'clean'
     sh "./gradlew clean"
-
-    stage 'backend tests'
+    sh "./gradlew assemble"
     sh "./gradlew test"
 
-    stage 'packaging'
+    stage 'Publishing Snapshot'
+    sh "./gradlew publish"
+}
+
+input 'Create Release?'
+
+node {
+    stage 'Create Release'
     sh "./gradlew release -Prelease.useAutomaticVersion=true"
-    //sh "./gradlew bootRepackage"
-    archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
 }
