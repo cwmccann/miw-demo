@@ -11,12 +11,14 @@ node {
     sh "./gradlew test"
 
     stage 'Publishing Snapshot'
-    sh "./gradlew publish"
+    //sh "./gradlew publish"
+    archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
 }
 
 input 'Create Release?'
 
 node {
     stage 'Create Release'
-    sh "./gradlew release -Prelease.useAutomaticVersion=true"
+    sh "./gradlew clean release -Prelease.useAutomaticVersion=true"
+    archiveArtifacts artifacts: 'build/libs/*.jar', excludes: null, fingerprint: true
 }
