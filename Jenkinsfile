@@ -16,7 +16,7 @@ node {
 }
 
 //Only allow one running at a time
-stage 'Create Release', concurrency: 1
+stage name: 'Create Release', concurrency: 1
 input 'Create Release?'
 node {
     sh "./gradlew clean release -Prelease.useAutomaticVersion=true"
